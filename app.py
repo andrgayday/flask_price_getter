@@ -1,6 +1,14 @@
 from flask import Flask, request, jsonify
+from environs import Env
 
 from get_prices import get_prices_from_binance
+
+
+env = Env()
+env.read_env()
+
+
+DEBUG = env.bool("DEBUG")
 
 
 app = Flask(__name__)
@@ -25,4 +33,4 @@ def get_data():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=DEBUG)
